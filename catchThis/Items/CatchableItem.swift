@@ -46,7 +46,6 @@ class CatchableItem: SKSpriteNode {
         let texture = SKTexture(imageNamed: textures[Int(random)])
         
         trailNode = SKNode()
-        trailNode.physicsBody?.mass = 0
         trailNode.zPosition = 0
         self.parent?.addChild(trailNode)
         let trail = SKEmitterNode(fileNamed: "spark.sks")!
@@ -57,7 +56,6 @@ class CatchableItem: SKSpriteNode {
         
         texture.filteringMode = SKTextureFilteringMode.nearest
         self.texture = texture
-        self.physicsBody?.angularVelocity = 10
         self.physicsBody?.allowsRotation = true
         self.physicsBody = SKPhysicsBody(texture: texture, size: size)
     }

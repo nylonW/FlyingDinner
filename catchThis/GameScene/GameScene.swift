@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import UIKit
 
 enum GameState {
     case title, ready, playing, gameOver
@@ -23,10 +24,20 @@ class GameScene: SKScene {
     
     var state: GameState = .title
     
+    var highScoreLabel: SKLabelNode!
     var scoreLabel: SKLabelNode!
     var score = 0 {
         didSet {
-            scoreLabel.text = String(score)
+            scoreLabel.attributedText = NSAttributedString(string: String(score))
+            scoreLabel.addStroke(color: .black, width: 2.0)
+        }
+    }
+    
+    var highScore = UserDefaults.standard.integer(forKey: "highScore") {
+        didSet {
+            UserDefaults.standard.set(highScore, forKey: "highScore")
+            highScoreLabel.attributedText = NSAttributedString(string: String(highScore))
+            highScoreLabel.addStroke(color: .black, width: 2.0)
         }
     }
     
@@ -38,7 +49,7 @@ class GameScene: SKScene {
         
         if state == .ready {
             playButton.isHidden = true
-            let wait = SKAction.wait(forDuration: 1)
+            let wait = SKAction.wait(forDuration: 0.8)
             let update = SKAction.run( {
                 self.throwNewItem()
             })
@@ -63,6 +74,11 @@ class GameScene: SKScene {
         }
         
         scoreLabel = childNode(withName: "scoreLabel") as? SKLabelNode
+        scoreLabel.addStroke(color: .black, width: 2.0)
+        
+        highScoreLabel = childNode(withName: "highScoreLabel") as? SKLabelNode
+        highScoreLabel.attributedText = NSAttributedString(string: "High score: \(highScore)")
+        highScoreLabel.addStroke(color: .black, width: 2.0)
         
     }
     
@@ -75,11 +91,11 @@ class GameScene: SKScene {
         
         let random = arc4random_uniform(100)
         if random <= 49 {
-            item.position = CGPoint(x: 367, y: 220)
-            item.physicsBody?.velocity = CGVector(dx: -600 - 1.5 * CGFloat(score), dy: CGFloat(400 + 2 * score))
+            item.position = CGPoint(x: 367, y: 220 + Int(random * 2))
+            item.physicsBody?.velocity = CGVector(dx: -600 - 2 * CGFloat(score), dy: CGFloat(400 + 2 * score))
         } else {
-            item.position = CGPoint(x: -40, y: 220)
-            item.physicsBody?.velocity = CGVector(dx: 600 + 1.5 * CGFloat(score), dy: CGFloat(400 + 2 * score)                                                                   )
+            item.position = CGPoint(x: -40, y: 220 + Int(random - 50) * 2)
+            item.physicsBody?.velocity = CGVector(dx: 600 + 2 * CGFloat(score), dy: CGFloat(400 + 2 * score)                                                                   )
         }
         
         self.items.append(item)
@@ -142,15 +158,12 @@ class GameScene: SKScene {
                 item.physicsBody!.velocity = velocity
             }
             
-            if item.position.y < 0 && item.position.x >= 0 && item.position.x <= 320  {
+            if item.position.y < 0 && item.position.x >= 0 && item.position.x <= 320 && item.catched == false {
                 score += 1
-                item.removeFromParent()
-                item.removed = true
-            } else if item.position.y < 0 && score != 0 {
+                item.catched = true
+            } else if item.position.y < 0 && score != 0 && item.catched == false {
                 gameOver()
-                item.removeFromParent()
-                item.removed = true
-            } else if item.position.y < 0 {
+            } else if item.position.y < -1000 {
                 item.removeFromParent()
                 item.removed = true
             }
@@ -168,6 +181,10 @@ class GameScene: SKScene {
     
     func gameOver() {
         state = .gameOver
+        
+        if score > highScore {
+            highScore = score
+        }
         
         playButton.selectedHandler = {
             let skView = self.view as SKView?

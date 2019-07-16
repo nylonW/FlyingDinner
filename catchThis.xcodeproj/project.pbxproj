@@ -21,6 +21,10 @@
 		8517A39122DE0DF500741510 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A39022DE0DF500741510 /* MSButtonNode.swift */; };
 		8517A39422DE446200741510 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8517A39222DE446200741510 /* spark.sks */; };
 		8517A39522DE446200741510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8517A39322DE446200741510 /* Assets.xcassets */; };
+		8517A39822DE661300741510 /* FFFFORWA.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8517A39722DE660E00741510 /* FFFFORWA.TTF */; };
+		8517A39B22DE676500741510 /* SKLabelNode+Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A39A22DE676500741510 /* SKLabelNode+Stroke.swift */; };
+		8517A39D22DE6E1500741510 /* MKOutlinedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A39C22DE6E1500741510 /* MKOutlinedLabelNode.swift */; };
+		8517A39F22DE72ED00741510 /* ARCADECLASSIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8517A39E22DE72E500741510 /* ARCADECLASSIC.TTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		8517A39022DE0DF500741510 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		8517A39222DE446200741510 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
 		8517A39322DE446200741510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8517A39722DE660E00741510 /* FFFFORWA.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FFFFORWA.TTF; sourceTree = "<group>"; };
+		8517A39A22DE676500741510 /* SKLabelNode+Stroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Stroke.swift"; sourceTree = "<group>"; };
+		8517A39C22DE6E1500741510 /* MKOutlinedLabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKOutlinedLabelNode.swift; sourceTree = "<group>"; };
+		8517A39E22DE72E500741510 /* ARCADECLASSIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARCADECLASSIC.TTF; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,8 @@
 		8517A35522DDD53500741510 /* catchThis */ = {
 			isa = PBXGroup;
 			children = (
+				8517A39922DE674E00741510 /* Extensions */,
+				8517A39622DE65F700741510 /* fonts */,
 				8517A38A22DDD53C00741510 /* Items */,
 				8517A38D22DDD77D00741510 /* GameScene */,
 				8517A35622DDD53500741510 /* AppDelegate.swift */,
@@ -146,6 +156,7 @@
 			children = (
 				8517A38B22DDD54E00741510 /* CatchableItem.swift */,
 				8517A39022DE0DF500741510 /* MSButtonNode.swift */,
+				8517A39C22DE6E1500741510 /* MKOutlinedLabelNode.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -160,6 +171,23 @@
 				8517A39322DE446200741510 /* Assets.xcassets */,
 			);
 			path = GameScene;
+			sourceTree = "<group>";
+		};
+		8517A39622DE65F700741510 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8517A39E22DE72E500741510 /* ARCADECLASSIC.TTF */,
+				8517A39722DE660E00741510 /* FFFFORWA.TTF */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		8517A39922DE674E00741510 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8517A39A22DE676500741510 /* SKLabelNode+Stroke.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +294,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8517A39F22DE72ED00741510 /* ARCADECLASSIC.TTF in Resources */,
 				8517A36222DDD53500741510 /* Main.storyboard in Resources */,
+				8517A39822DE661300741510 /* FFFFORWA.TTF in Resources */,
 				8517A39422DE446200741510 /* spark.sks in Resources */,
 				8517A35922DDD53500741510 /* GameScene.sks in Resources */,
 				8517A36422DDD53600741510 /* Assets.xcassets in Resources */,
@@ -301,7 +331,9 @@
 				8517A35D22DDD53500741510 /* GameScene.swift in Sources */,
 				8517A35F22DDD53500741510 /* GameViewController.swift in Sources */,
 				8517A35722DDD53500741510 /* AppDelegate.swift in Sources */,
+				8517A39B22DE676500741510 /* SKLabelNode+Stroke.swift in Sources */,
 				8517A39122DE0DF500741510 /* MSButtonNode.swift in Sources */,
+				8517A39D22DE6E1500741510 /* MKOutlinedLabelNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
