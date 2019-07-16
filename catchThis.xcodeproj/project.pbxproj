@@ -18,6 +18,9 @@
 		8517A37D22DDD53600741510 /* catchThisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A37C22DDD53600741510 /* catchThisUITests.swift */; };
 		8517A38C22DDD54E00741510 /* CatchableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A38B22DDD54E00741510 /* CatchableItem.swift */; };
 		8517A38F22DDD98D00741510 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8517A38E22DDD98D00741510 /* Actions.sks */; };
+		8517A39122DE0DF500741510 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A39022DE0DF500741510 /* MSButtonNode.swift */; };
+		8517A39422DE446200741510 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8517A39222DE446200741510 /* spark.sks */; };
+		8517A39522DE446200741510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8517A39322DE446200741510 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		8517A37E22DDD53600741510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8517A38B22DDD54E00741510 /* CatchableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchableItem.swift; sourceTree = "<group>"; };
 		8517A38E22DDD98D00741510 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		8517A39022DE0DF500741510 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		8517A39222DE446200741510 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
+		8517A39322DE446200741510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				8517A38B22DDD54E00741510 /* CatchableItem.swift */,
+				8517A39022DE0DF500741510 /* MSButtonNode.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -149,6 +156,8 @@
 				8517A35822DDD53500741510 /* GameScene.sks */,
 				8517A35C22DDD53500741510 /* GameScene.swift */,
 				8517A38E22DDD98D00741510 /* Actions.sks */,
+				8517A39222DE446200741510 /* spark.sks */,
+				8517A39322DE446200741510 /* Assets.xcassets */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -258,8 +267,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8517A36222DDD53500741510 /* Main.storyboard in Resources */,
+				8517A39422DE446200741510 /* spark.sks in Resources */,
 				8517A35922DDD53500741510 /* GameScene.sks in Resources */,
 				8517A36422DDD53600741510 /* Assets.xcassets in Resources */,
+				8517A39522DE446200741510 /* Assets.xcassets in Resources */,
 				8517A36722DDD53600741510 /* LaunchScreen.storyboard in Resources */,
 				8517A38F22DDD98D00741510 /* Actions.sks in Resources */,
 			);
@@ -290,6 +301,7 @@
 				8517A35D22DDD53500741510 /* GameScene.swift in Sources */,
 				8517A35F22DDD53500741510 /* GameViewController.swift in Sources */,
 				8517A35722DDD53500741510 /* AppDelegate.swift in Sources */,
+				8517A39122DE0DF500741510 /* MSButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
