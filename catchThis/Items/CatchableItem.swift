@@ -35,7 +35,7 @@ class CatchableItem: SKSpriteNode {
         textures.append("Brownie")
         textures.append("Eggs")
         textures.append("Fish")
-        //textures.append("Honey")
+        textures.append("Honey")
         textures.append("Shrimp")
         textures.append("Strawberry")
         //textures.append("Bomb")
@@ -50,7 +50,7 @@ class CatchableItem: SKSpriteNode {
         self.parent?.addChild(trailNode)
         let trail = SKEmitterNode(fileNamed: "spark.sks")!
         trail.targetNode = trailNode
-        self.addChild(trail)
+        //self.addChild(trail)
 
         self.size = CGSize(width: self.size.width * 3, height: self.size.height * 3)
         

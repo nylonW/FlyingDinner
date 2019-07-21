@@ -1,0 +1,6 @@
+framework module Pods_catchThis {
+  umbrella header "Pods-catchThis-umbrella.h"
+
+  export *
+  module * { export * }
+}

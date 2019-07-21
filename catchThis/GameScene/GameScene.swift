@@ -24,6 +24,7 @@ class GameScene: SKScene {
     
     var state: GameState = .title
     
+    var menuNode: PopupNode!
     var highScoreLabel: SKLabelNode!
     var scoreLabel: SKLabelNode!
     var score = 0 {
@@ -47,6 +48,12 @@ class GameScene: SKScene {
         let background = childNode(withName: "background") as! SKSpriteNode
         background.texture?.filteringMode = SKTextureFilteringMode.nearest
         
+        menuNode = PopupNode()
+        menuNode.setup(with: "Game Over", name: "menu")
+        menuNode.position = CGPoint(x: (self.size.width - menuNode.size.width) / 2, y: (self.size.height - menuNode.size.height) / 2)
+        menuNode.isHidden = true
+        self.addChild(menuNode)
+
         if state == .ready {
             playButton.isHidden = true
             let wait = SKAction.wait(forDuration: 0.8)
@@ -181,6 +188,9 @@ class GameScene: SKScene {
     
     func gameOver() {
         state = .gameOver
+        
+        menuNode.isHidden = false
+        menuNode.score = score
         
         if score > highScore {
             highScore = score
