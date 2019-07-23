@@ -9,8 +9,20 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import GameKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate {
+    
+    var gcEnabled = Bool()
+    var gcDefaultLeaderBoard = String()
+    var score = 0
+    
+    static let LEADERBOARD_ID = "com.nylon.catch"
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +41,32 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+        }
+        
+        authenticateLocalPlayer()
+    }
+    
+    //MARK: LEADERBOARDS
+    func authenticateLocalPlayer() {
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.local
+        
+        localPlayer.authenticateHandler = { (ViewController, error) -> Void in
+            if let vc = ViewController {
+                self.present(vc, animated: true, completion: nil)
+            } else if localPlayer.isAuthenticated {
+                self.gcEnabled = true
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardId, error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        self.gcDefaultLeaderBoard = leaderboardId!
+                    }
+                })
+            } else {
+                self.gcEnabled = false
+                print("Local player not authenticated")
+                print(error as Any)
+            }
         }
     }
 

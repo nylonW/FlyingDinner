@@ -29,6 +29,7 @@
 		8523E01822E4BA8B00DDD8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8523E01622E4BA8B00DDD8AB /* Assets.xcassets */; };
 		8523E01A22E4C19000DDD8AB /* PopupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E01922E4C19000DDD8AB /* PopupNode.swift */; };
 		8523E01C22E4C9EE00DDD8AB /* NSAttributedString+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E01B22E4C9EE00DDD8AB /* NSAttributedString+Size.swift */; };
+		8523E01E22E4DE2700DDD8AB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8523E01D22E4DE2700DDD8AB /* GameKit.framework */; };
 		D05E179D2670B7E7A80E13D1 /* Pods_catchThisUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFC15483FBB5E3B4FBEF94 /* Pods_catchThisUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		8523E01622E4BA8B00DDD8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8523E01922E4C19000DDD8AB /* PopupNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNode.swift; sourceTree = "<group>"; };
 		8523E01B22E4C9EE00DDD8AB /* NSAttributedString+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Size.swift"; sourceTree = "<group>"; };
+		8523E01D22E4DE2700DDD8AB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B43F9DC8D66A8C6A42C8481E /* Pods-catchThisTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catchThisTests.debug.xcconfig"; path = "Target Support Files/Pods-catchThisTests/Pods-catchThisTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D102349C99762C08F113B2F6 /* Pods-catchThisTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catchThisTests.release.xcconfig"; path = "Target Support Files/Pods-catchThisTests/Pods-catchThisTests.release.xcconfig"; sourceTree = "<group>"; };
 		D6AEFD51B6EEE47AB16E617A /* Pods-catchThis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catchThis.debug.xcconfig"; path = "Target Support Files/Pods-catchThis/Pods-catchThis.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50BE33A272D68D92A08D1674 /* Pods_catchThis.framework in Frameworks */,
+				8523E01E22E4DE2700DDD8AB /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +121,7 @@
 		737E87F30F1AB73D386F9C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8523E01D22E4DE2700DDD8AB /* GameKit.framework */,
 				3A7422FE2F733AEA66EF1362 /* Pods_catchThis.framework */,
 				5D242ADC8DDE16D9779B105F /* Pods_catchThisTests.framework */,
 				FCFFC15483FBB5E3B4FBEF94 /* Pods_catchThisUITests.framework */,
@@ -307,6 +311,11 @@
 				TargetAttributes = {
 					8517A35222DDD53500741510 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					8517A36C22DDD53600741510 = {
 						CreatedOnToolsVersion = 10.2.1;

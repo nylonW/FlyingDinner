@@ -8,13 +8,18 @@
 
 import SpriteKit
 import GameplayKit
+import GameKit
 import UIKit
 
 enum GameState {
     case title, ready, playing, gameOver
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        
+    }
+    
     
     var touching = false
     var touchPoint = CGPoint()
@@ -188,6 +193,13 @@ class GameScene: SKScene {
     
     func gameOver() {
         state = .gameOver
+        
+        //MARK: LEADERBOARDS
+        let gcVC = GKGameCenterViewController()
+        gcVC.gameCenterDelegate = self
+        gcVC.viewState = .leaderboards
+        gcVC.leaderboardIdentifier = GameViewController.LEADERBOARD_ID
+        self.inputViewController?.present(gcVC, animated: true, completion: nil)
         
         menuNode.isHidden = false
         menuNode.score = score
