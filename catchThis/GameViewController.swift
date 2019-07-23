@@ -11,7 +11,7 @@ import SpriteKit
 import GameplayKit
 import GameKit
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GameManager {
     
     var gcEnabled = Bool()
     var gcDefaultLeaderBoard = String()
@@ -29,9 +29,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = GameScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                scene.gameDelegate = self
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -44,6 +45,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         }
         
         authenticateLocalPlayer()
+        
+    }
+    
+    func shareScreenShot() {
+        ScreenShareHelper.app.captrueAndShare(in: self)
     }
     
     //MARK: LEADERBOARDS

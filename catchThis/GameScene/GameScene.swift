@@ -15,6 +15,10 @@ enum GameState {
     case title, ready, playing, gameOver
 }
 
+protocol GameManager {
+    func shareScreenShot()
+}
+
 class GameScene: SKScene, GKGameCenterControllerDelegate {
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         
@@ -28,6 +32,7 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     var playButton: MSButtonNode!
     
     var state: GameState = .title
+    var gameDelegate: GameManager?
     
     var menuNode: PopupNode!
     var highScoreLabel: SKLabelNode!
@@ -47,7 +52,16 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         }
     }
     
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
+        //self.size = CGSize(width: UIScreen.main.nativeBounds.size.width / 4, height: UIScreen.main.nativeBounds.height / 4)
+        self.size.height = self.size.width * (UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width)
+
+    }
+    
     override func didMove(to view: SKView) {
+        super.didMove(to: view)
         
         playButton = childNode(withName: "playButton") as? MSButtonNode
         let background = childNode(withName: "background") as! SKSpriteNode
@@ -57,6 +71,20 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         menuNode.setup(with: "Game Over", name: "menu")
         menuNode.position = CGPoint(x: (self.size.width - menuNode.size.width) / 2, y: (self.size.height - menuNode.size.height) / 2)
         menuNode.isHidden = true
+        
+        let shareButton = MSButtonNode(texture: SKTexture(imageNamed: "ShareButton"))
+        shareButton.size = shareButton.texture?.size() ?? .zero
+        
+        shareButton.position = CGPoint(x: (menuNode.size.width - shareButton.size.width) / 2, y: (menuNode.size.height / 2) - shareButton.size.height * 2)
+        shareButton.zPosition = menuNode.zPosition + 2
+        shareButton.anchorPoint = .zero
+        
+        shareButton.selectedHandler = {
+            self.gameDelegate?.shareScreenShot()
+        }
+        
+        menuNode.addChild(shareButton)
+        
         self.addChild(menuNode)
 
         if state == .ready {
