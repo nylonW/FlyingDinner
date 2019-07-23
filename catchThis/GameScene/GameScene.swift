@@ -144,7 +144,7 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
             self.size.height = self.size.height + 30
             background.size.height = self.size.height
             highScoreLabel.position = CGPoint(x: highScoreLabel.position.x + 8, y: highScoreLabel.position.y + 10)
-            settingsButton.position = CGPoint(x: settingsButton.position.x - 10, y: settingsButton.position.y + 10)
+            settingsButton.position = CGPoint(x: settingsButton.position.x - 16, y: settingsButton.position.y + 10)
         }
         
     }
