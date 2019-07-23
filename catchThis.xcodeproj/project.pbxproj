@@ -19,7 +19,6 @@
 		8517A37222DDD53600741510 /* catchThisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A37122DDD53600741510 /* catchThisTests.swift */; };
 		8517A37D22DDD53600741510 /* catchThisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A37C22DDD53600741510 /* catchThisUITests.swift */; };
 		8517A38C22DDD54E00741510 /* CatchableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A38B22DDD54E00741510 /* CatchableItem.swift */; };
-		8517A38F22DDD98D00741510 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8517A38E22DDD98D00741510 /* Actions.sks */; };
 		8517A39122DE0DF500741510 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A39022DE0DF500741510 /* MSButtonNode.swift */; };
 		8517A39822DE661300741510 /* FFFFORWA.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8517A39722DE660E00741510 /* FFFFORWA.TTF */; };
 		8517A39B22DE676500741510 /* SKLabelNode+Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517A39A22DE676500741510 /* SKLabelNode+Stroke.swift */; };
@@ -74,7 +73,6 @@
 		8517A37C22DDD53600741510 /* catchThisUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catchThisUITests.swift; sourceTree = "<group>"; };
 		8517A37E22DDD53600741510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8517A38B22DDD54E00741510 /* CatchableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchableItem.swift; sourceTree = "<group>"; };
-		8517A38E22DDD98D00741510 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		8517A39022DE0DF500741510 /* MSButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		8517A39722DE660E00741510 /* FFFFORWA.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FFFFORWA.TTF; sourceTree = "<group>"; };
 		8517A39A22DE676500741510 /* SKLabelNode+Stroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Stroke.swift"; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 			children = (
 				8517A35822DDD53500741510 /* GameScene.sks */,
 				8517A35C22DDD53500741510 /* GameScene.swift */,
-				8517A38E22DDD98D00741510 /* Actions.sks */,
 				8523E01522E4BA8B00DDD8AB /* spark.sks */,
 				8523E01622E4BA8B00DDD8AB /* Assets.xcassets */,
 			);
@@ -374,7 +371,6 @@
 				8517A36422DDD53600741510 /* Assets.xcassets in Resources */,
 				8517A36722DDD53600741510 /* LaunchScreen.storyboard in Resources */,
 				8523E01822E4BA8B00DDD8AB /* Assets.xcassets in Resources */,
-				8517A38F22DDD98D00741510 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,7 +660,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nylon.catchThis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -683,7 +679,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nylon.catchThis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

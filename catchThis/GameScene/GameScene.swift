@@ -20,16 +20,17 @@ protocol GameManager {
 }
 
 class GameScene: SKScene, GKGameCenterControllerDelegate {
+    
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         
     }
-    
     
     var touching = false
     var touchPoint = CGPoint()
     var catchableItem: CatchableItem?
     var items: [CatchableItem] = []
     var playButton: MSButtonNode!
+    var background: SKSpriteNode!
     
     var state: GameState = .title
     var gameDelegate: GameManager?
@@ -37,6 +38,8 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     var menuNode: PopupNode!
     var highScoreLabel: SKLabelNode!
     var scoreLabel: SKLabelNode!
+    var settingsButton: MSButtonNode!
+    
     var score = 0 {
         didSet {
             scoreLabel.attributedText = NSAttributedString(string: String(score))
@@ -47,7 +50,7 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     var highScore = UserDefaults.standard.integer(forKey: "highScore") {
         didSet {
             UserDefaults.standard.set(highScore, forKey: "highScore")
-            highScoreLabel.attributedText = NSAttributedString(string: String(highScore))
+            highScoreLabel.attributedText = NSAttributedString(string: "Highscore: \(highScore)")
             highScoreLabel.addStroke(color: .black, width: 2.0)
         }
     }
@@ -56,15 +59,26 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         super.sceneDidLoad()
         
         //self.size = CGSize(width: UIScreen.main.nativeBounds.size.width / 4, height: UIScreen.main.nativeBounds.height / 4)
-        self.size.height = self.size.width * (UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width)
-
+        //if UIScreen.main.sizeType == .iPhoneXS {
+        //self.scene?.size.height = (self.scene?.size.width ?? 0) / (1125/2436)
+        
+        
+        
+        self.scaleMode = .aspectFill
     }
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        settingsButton = childNode(withName: "settingsButton") as? MSButtonNode
+        settingsButton.texture?.filteringMode = SKTextureFilteringMode.nearest
+        settingsButton.selectedHandler = {
+            
+        }
+        
         playButton = childNode(withName: "playButton") as? MSButtonNode
-        let background = childNode(withName: "background") as! SKSpriteNode
+        
+        background = childNode(withName: "background") as? SKSpriteNode
         background.texture?.filteringMode = SKTextureFilteringMode.nearest
         
         menuNode = PopupNode()
@@ -119,6 +133,15 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         highScoreLabel = childNode(withName: "highScoreLabel") as? SKLabelNode
         highScoreLabel.attributedText = NSAttributedString(string: "High score: \(highScore)")
         highScoreLabel.addStroke(color: .black, width: 2.0)
+        
+        let sizeType = UIScreen.main.sizeType
+        
+        if sizeType == .iPhoneXS || sizeType == .iPhoneXR || sizeType == .iPhoneXSMax {
+            self.size.height = self.size.height + 30
+            background.size.height = self.size.height
+            highScoreLabel.position = CGPoint(x: highScoreLabel.position.x + 8, y: highScoreLabel.position.y + 10)
+            settingsButton.position = CGPoint(x: settingsButton.position.x - 10, y: settingsButton.position.y + 10)
+        }
         
     }
     
@@ -201,11 +224,13 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
             if item.position.y < 0 && item.position.x >= 0 && item.position.x <= 320 && item.catched == false {
                 score += 1
                 item.catched = true
-            } else if item.position.y < 0 && score != 0 && item.catched == false {
+            } else if (item.position.x < 0 || item.position.x > self.size.width) && score != 0 && item.catched == false && item.enteredScene {
                 gameOver()
             } else if item.position.y < -1000 {
                 item.removeFromParent()
                 item.removed = true
+            } else if item.position.x >= 0 && item.position.x <= 320 && score != 0 {
+                item.enteredScene = true
             }
         }
     }
@@ -229,12 +254,16 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         gcVC.leaderboardIdentifier = GameViewController.LEADERBOARD_ID
         self.inputViewController?.present(gcVC, animated: true, completion: nil)
         
-        menuNode.isHidden = false
+        
         menuNode.score = score
         
         if score > highScore {
             highScore = score
+            menuNode.titleLabel.attributedText = menuNode.getAttributedText(text: "New record!")
+            menuNode.titleLabel.position = CGPoint(x: (menuNode.size.width - (menuNode.titleLabel.attributedText?.size().width ?? 0)) / 2, y: menuNode.size.height - 70)
         }
+        
+        menuNode.isHidden = false
         
         playButton.selectedHandler = {
             let skView = self.view as SKView?
@@ -242,6 +271,8 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
             
             scene.scaleMode = .aspectFill
             scene.state = .ready
+            scene.gameDelegate = self.gameDelegate
+            
             skView?.presentScene(scene)
         }
     }

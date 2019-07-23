@@ -10,6 +10,7 @@ import SpriteKit
 
 class CatchableItem: SKSpriteNode {
     
+    var enteredScene = false
     var catched = false
     var removed = false {
         didSet {

@@ -16,6 +16,9 @@ extension UIScreen {
         case iPhone5 = 1136.0
         case iPhone6 = 1334.0
         case iPhone6Plus = 1920.0
+        case iPhoneXS = 2436.0
+        case iPhoneXR = 1792
+        case iPhoneXSMax = 2688
     }
     
     var sizeType: SizeType {
