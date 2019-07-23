@@ -39,6 +39,8 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     var highScoreLabel: SKLabelNode!
     var scoreLabel: SKLabelNode!
     var settingsButton: MSButtonNode!
+    var pop = SKAction.playSoundFileNamed("pop.mp3", waitForCompletion: false)
+    var fail = SKAction.playSoundFileNamed("fail.mp3", waitForCompletion: false)
     
     var score = 0 {
         didSet {
@@ -103,7 +105,8 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
 
         if state == .ready {
             playButton.isHidden = true
-            let wait = SKAction.wait(forDuration: 0.8)
+            settingsButton.isHidden = true
+            let wait = SKAction.wait(forDuration: 0.4)
             let update = SKAction.run( {
                 self.throwNewItem()
             })
@@ -116,8 +119,9 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         playButton.selectedHandler = {
             self.state = .ready
             self.playButton.isHidden = true
+            self.settingsButton.isHidden = true
             
-            let wait = SKAction.wait(forDuration: 1)
+            let wait = SKAction.wait(forDuration: 0.4)
             let update = SKAction.run( {
                 self.throwNewItem()
             })
@@ -155,10 +159,10 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         let random = arc4random_uniform(100)
         if random <= 49 {
             item.position = CGPoint(x: 367, y: 220 + Int(random * 2))
-            item.physicsBody?.velocity = CGVector(dx: -600 - 2 * CGFloat(score), dy: CGFloat(400 + 2 * score))
+            item.physicsBody?.velocity = CGVector(dx: -600 - 1.5 * CGFloat(score), dy: CGFloat(400 + CGFloat(score)))
         } else {
             item.position = CGPoint(x: -40, y: 220 + Int(random - 50) * 2)
-            item.physicsBody?.velocity = CGVector(dx: 600 + 2 * CGFloat(score), dy: CGFloat(400 + 2 * score)                                                                   )
+            item.physicsBody?.velocity = CGVector(dx: 600 + 1.5 * CGFloat(score), dy: CGFloat(400 + CGFloat(score))                                                                   )
         }
         
         self.items.append(item)
@@ -224,6 +228,7 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
             if item.position.y < 0 && item.position.x >= 0 && item.position.x <= 320 && item.catched == false {
                 score += 1
                 item.catched = true
+                playSound(sound: pop)
             } else if (item.position.x < 0 || item.position.x > self.size.width) && score != 0 && item.catched == false && item.enteredScene {
                 gameOver()
             } else if item.position.y < -1000 {
@@ -246,6 +251,8 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     
     func gameOver() {
         state = .gameOver
+        playSound(sound: fail)
+        self.settingsButton.isHidden = false
         
         //MARK: LEADERBOARDS
         let gcVC = GKGameCenterViewController()
@@ -275,5 +282,9 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
             
             skView?.presentScene(scene)
         }
+    }
+    
+    func playSound(sound : SKAction) {
+        run(sound)
     }
 }

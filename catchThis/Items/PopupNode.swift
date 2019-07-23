@@ -35,11 +35,17 @@ class PopupNode: SKSpriteNode {
         titleLabel.position = CGPoint(x: (self.size.width - (titleLabel.attributedText?.size().width ?? 0)) / 2, y: self.size.height - 70)
         self.addChild(titleLabel)
         
+        let scoreTitleLabel = getLabelWithAttributed(text: "score")
+        scoreTitleLabel.verticalAlignmentMode = .bottom
+        
         scoreLabel = getLabelWithAttributed(text: "0")
         scoreLabel.position = CGPoint(x: (self.size.width - (scoreLabel.attributedText?.size().width ?? 0)) / 2, y: ((self.size.height - 35) / 2))
         scoreLabel.fontSize = 72
         
+        scoreTitleLabel.position = CGPoint(x: (self.size.width - (scoreTitleLabel.attributedText?.size().width ?? 0)) / 2, y: scoreLabel.position.y + (scoreLabel.attributedText?.size().height ?? 0) + 18)
+        
         self.addChild(scoreLabel)
+        self.addChild(scoreTitleLabel)
     }
     
     func getAttributedText(text: String) -> NSAttributedString {

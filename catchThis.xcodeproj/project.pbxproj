@@ -31,6 +31,8 @@
 		8523E01E22E4DE2700DDD8AB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8523E01D22E4DE2700DDD8AB /* GameKit.framework */; };
 		855641BE22E7393B00DA4A53 /* ScreenShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855641BD22E7393B00DA4A53 /* ScreenShareHelper.swift */; };
 		855641C022E7555400DA4A53 /* UIScreen+sizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855641BF22E7555400DA4A53 /* UIScreen+sizeType.swift */; };
+		855641C322E7A0F400DA4A53 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 855641C222E7A0F400DA4A53 /* pop.mp3 */; };
+		855641C522E7A1E200DA4A53 /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 855641C422E7A1E200DA4A53 /* fail.mp3 */; };
 		D05E179D2670B7E7A80E13D1 /* Pods_catchThisUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFC15483FBB5E3B4FBEF94 /* Pods_catchThisUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,8 @@
 		8523E01D22E4DE2700DDD8AB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		855641BD22E7393B00DA4A53 /* ScreenShareHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShareHelper.swift; sourceTree = "<group>"; };
 		855641BF22E7555400DA4A53 /* UIScreen+sizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+sizeType.swift"; sourceTree = "<group>"; };
+		855641C222E7A0F400DA4A53 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
+		855641C422E7A1E200DA4A53 /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
 		B43F9DC8D66A8C6A42C8481E /* Pods-catchThisTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catchThisTests.debug.xcconfig"; path = "Target Support Files/Pods-catchThisTests/Pods-catchThisTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D102349C99762C08F113B2F6 /* Pods-catchThisTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catchThisTests.release.xcconfig"; path = "Target Support Files/Pods-catchThisTests/Pods-catchThisTests.release.xcconfig"; sourceTree = "<group>"; };
 		D6AEFD51B6EEE47AB16E617A /* Pods-catchThis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catchThis.debug.xcconfig"; path = "Target Support Files/Pods-catchThis/Pods-catchThis.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		8517A35522DDD53500741510 /* catchThis */ = {
 			isa = PBXGroup;
 			children = (
+				855641C122E7A0E900DA4A53 /* Sounds */,
 				855641BC22E7391900DA4A53 /* Helpers */,
 				8517A39922DE674E00741510 /* Extensions */,
 				8517A39622DE65F700741510 /* fonts */,
@@ -236,6 +241,15 @@
 				855641BD22E7393B00DA4A53 /* ScreenShareHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		855641C122E7A0E900DA4A53 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				855641C422E7A1E200DA4A53 /* fail.mp3 */,
+				855641C222E7A0F400DA4A53 /* pop.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		BCA76468D943D371B22C8DFA /* Pods */ = {
@@ -366,8 +380,10 @@
 				8517A39F22DE72ED00741510 /* ARCADECLASSIC.TTF in Resources */,
 				8523E01722E4BA8B00DDD8AB /* spark.sks in Resources */,
 				8517A36222DDD53500741510 /* Main.storyboard in Resources */,
+				855641C322E7A0F400DA4A53 /* pop.mp3 in Resources */,
 				8517A39822DE661300741510 /* FFFFORWA.TTF in Resources */,
 				8517A35922DDD53500741510 /* GameScene.sks in Resources */,
+				855641C522E7A1E200DA4A53 /* fail.mp3 in Resources */,
 				8517A36422DDD53600741510 /* Assets.xcassets in Resources */,
 				8517A36722DDD53600741510 /* LaunchScreen.storyboard in Resources */,
 				8523E01822E4BA8B00DDD8AB /* Assets.xcassets in Resources */,
@@ -653,6 +669,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A4RSAW4A69;
 				INFOPLIST_FILE = catchThis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -672,6 +689,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A4RSAW4A69;
 				INFOPLIST_FILE = catchThis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
