@@ -34,6 +34,7 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     
     var state: GameState = .title
     var gameDelegate: GameManager?
+    var hintNode: SKSpriteNode!
     
     var menuNode: PopupNode!
     var highScoreLabel: SKLabelNode!
@@ -46,6 +47,13 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         didSet {
             scoreLabel.attributedText = NSAttributedString(string: String(score))
             scoreLabel.addStroke(color: .black, width: 2.0)
+            if score > 0 {
+                if let hint = hintNode {
+                    hint.isHidden = true
+                }
+            } else {
+                hintNode.isHidden = false
+            }
         }
     }
     
@@ -72,8 +80,15 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        hintNode = childNode(withName: "hint") as? SKSpriteNode
+        hintNode.texture?.filteringMode = .nearest
+        
+        let pot = childNode(withName: "pot") as? SKSpriteNode
+        pot?.texture?.filteringMode = .nearest
+        
         settingsButton = childNode(withName: "settingsButton") as? MSButtonNode
-        settingsButton.texture?.filteringMode = SKTextureFilteringMode.nearest
+        settingsButton.texture?.filteringMode = .nearest
+        settingsButton.isHidden = true // TODO: REMOVE
         settingsButton.selectedHandler = {
             
         }
@@ -81,11 +96,11 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         playButton = childNode(withName: "playButton") as? MSButtonNode
         
         background = childNode(withName: "background") as? SKSpriteNode
-        background.texture?.filteringMode = SKTextureFilteringMode.nearest
+        background.texture?.filteringMode = .nearest
         
         menuNode = PopupNode()
         menuNode.setup(with: "Game Over", name: "menu")
-        menuNode.position = CGPoint(x: (self.size.width - menuNode.size.width) / 2, y: (self.size.height - menuNode.size.height) / 2)
+        
         menuNode.isHidden = true
         
         let shareButton = MSButtonNode(texture: SKTexture(imageNamed: "ShareButton"))
@@ -141,11 +156,14 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         let sizeType = UIScreen.main.sizeType
         
         if sizeType == .iPhoneXS || sizeType == .iPhoneXR || sizeType == .iPhoneXSMax {
-            self.size.height = self.size.height + 30
+            self.size.height = self.size.height + 100
+            self.scaleMode = .aspectFill
             background.size.height = self.size.height
-            highScoreLabel.position = CGPoint(x: highScoreLabel.position.x + 8, y: highScoreLabel.position.y + 10)
+            highScoreLabel.position = CGPoint(x: highScoreLabel.position.x + 8, y: highScoreLabel.position.y + 70)
             settingsButton.position = CGPoint(x: settingsButton.position.x - 16, y: settingsButton.position.y + 10)
+            
         }
+        menuNode.position = CGPoint(x: (self.size.width - menuNode.size.width) / 2, y: (self.size.height - menuNode.size.height) / 2)
         
     }
     
@@ -252,7 +270,7 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     func gameOver() {
         state = .gameOver
         playSound(sound: fail)
-        self.settingsButton.isHidden = false
+        //self.settingsButton.isHidden = false
         
         //MARK: LEADERBOARDS
         let gcVC = GKGameCenterViewController()

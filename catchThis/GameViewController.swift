@@ -17,7 +17,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     var gcDefaultLeaderBoard = String()
     var score = 0
     
-    static let LEADERBOARD_ID = "com.nylon.catch"
+    static let LEADERBOARD_ID = "grp.nylon.catch"
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
@@ -39,9 +39,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             }
             
             view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
         }
         
         authenticateLocalPlayer()
@@ -65,6 +62,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
                     if let error = error {
                         print(error)
                     } else {
+                        print(leaderboardId)
                         self.gcDefaultLeaderBoard = leaderboardId!
                     }
                 })
@@ -77,7 +75,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     }
 
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
