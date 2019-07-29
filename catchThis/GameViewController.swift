@@ -49,6 +49,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         ScreenShareHelper.app.captrueAndShare(in: self)
     }
     
+    func showLeaderboard() {
+        let gcVC = GKGameCenterViewController()
+        gcVC.gameCenterDelegate = self
+        gcVC.viewState = .leaderboards
+        gcVC.leaderboardIdentifier = self.gcDefaultLeaderBoard
+        self.present(gcVC, animated: true, completion: nil)
+    }
+    
     //MARK: LEADERBOARDS
     func authenticateLocalPlayer() {
         let localPlayer: GKLocalPlayer = GKLocalPlayer.local
@@ -62,7 +70,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
                     if let error = error {
                         print(error)
                     } else {
-                        print(leaderboardId)
                         self.gcDefaultLeaderBoard = leaderboardId!
                     }
                 })

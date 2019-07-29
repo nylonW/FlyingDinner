@@ -39,6 +39,7 @@ class CatchableItem: SKSpriteNode {
         textures.append("Honey")
         textures.append("Shrimp")
         textures.append("Strawberry")
+        textures.append("Sashimi")
         //textures.append("Bomb")
         //textures.append("Cat")
         //textures.append("r2d2")

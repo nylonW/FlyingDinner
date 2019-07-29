@@ -17,12 +17,13 @@ enum GameState {
 
 protocol GameManager {
     func shareScreenShot()
+    func showLeaderboard()
 }
 
 class GameScene: SKScene, GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        
+        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
     
     var touching = false
@@ -42,6 +43,8 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     var settingsButton: MSButtonNode!
     var pop = SKAction.playSoundFileNamed("pop.mp3", waitForCompletion: false)
     var fail = SKAction.playSoundFileNamed("fail.mp3", waitForCompletion: false)
+    
+    var leaderboardButton: MSButtonNode!
     
     var score = 0 {
         didSet {
@@ -94,6 +97,11 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         }
         
         playButton = childNode(withName: "playButton") as? MSButtonNode
+        leaderboardButton = childNode(withName: "leaderboards") as? MSButtonNode
+        leaderboardButton.isHidden = true
+        leaderboardButton.selectedHandler = {
+            self.gameDelegate?.showLeaderboard()
+        }
         
         background = childNode(withName: "background") as? SKSpriteNode
         background.texture?.filteringMode = .nearest
@@ -227,7 +235,6 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         items.removeAll(where: { $0.removed })
 
         if state == .gameOver {
-            self.playButton.isHidden = false
             removeItems()
             return
         } else if state != .playing {
@@ -273,12 +280,6 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         //self.settingsButton.isHidden = false
         
         //MARK: LEADERBOARDS
-        let gcVC = GKGameCenterViewController()
-        gcVC.gameCenterDelegate = self
-        gcVC.viewState = .leaderboards
-        gcVC.leaderboardIdentifier = GameViewController.LEADERBOARD_ID
-        self.inputViewController?.present(gcVC, animated: true, completion: nil)
-        
         
         menuNode.score = score
         
@@ -286,9 +287,24 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
             highScore = score
             menuNode.titleLabel.attributedText = menuNode.getAttributedText(text: "New record!")
             menuNode.titleLabel.position = CGPoint(x: (menuNode.size.width - (menuNode.titleLabel.attributedText?.size().width ?? 0)) / 2, y: menuNode.size.height - 70)
+            
+            let bestScoreInt = GKScore(leaderboardIdentifier: GameViewController.LEADERBOARD_ID)
+            bestScoreInt.value = Int64(highScore)
+            GKScore.report([bestScoreInt]) { (error) in
+                if error != nil {
+                    print(error!.localizedDescription)
+                } else {
+                    print("Best Score submitted to your Leaderboard!")
+                }
+            }
         }
         
         menuNode.isHidden = false
+        playButton.isHidden = false
+        
+        playButton.position = CGPoint(x: playButton.position.x - (playButton.size.width / 2) - 1, y: playButton.position.y)
+        leaderboardButton.isHidden = false
+        leaderboardButton.position = CGPoint(x: playButton.position.x + playButton.size.width + 1, y: playButton.position.y)
         
         playButton.selectedHandler = {
             let skView = self.view as SKView?

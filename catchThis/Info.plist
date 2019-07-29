@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Flying Dinner</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -21,7 +23,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>The app needs photo library permission to allow a user to save a screenshot from the game in the device storage</string>
+	<string>The app needs photo library permission to allow a user to save a screenshot with a high score from the game in the device storage</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ARCADECLASSIC.TTF</string>
