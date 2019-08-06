@@ -6,6 +6,7 @@ target 'catchThis' do
   use_frameworks!
 
   # Pods for catchThis
+  pod 'Firebase/Analytics'
 
   target 'catchThisTests' do
     inherit! :search_paths

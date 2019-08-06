@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,7 @@
 		8523E01A22E4C19000DDD8AB /* PopupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E01922E4C19000DDD8AB /* PopupNode.swift */; };
 		8523E01C22E4C9EE00DDD8AB /* NSAttributedString+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E01B22E4C9EE00DDD8AB /* NSAttributedString+Size.swift */; };
 		8523E01E22E4DE2700DDD8AB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8523E01D22E4DE2700DDD8AB /* GameKit.framework */; };
+		853C1CF722EF70970072EA61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 853C1CF622EF70970072EA61 /* GoogleService-Info.plist */; };
 		855641BE22E7393B00DA4A53 /* ScreenShareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855641BD22E7393B00DA4A53 /* ScreenShareHelper.swift */; };
 		855641C022E7555400DA4A53 /* UIScreen+sizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855641BF22E7555400DA4A53 /* UIScreen+sizeType.swift */; };
 		855641C322E7A0F400DA4A53 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 855641C222E7A0F400DA4A53 /* pop.mp3 */; };
@@ -85,6 +86,7 @@
 		8523E01922E4C19000DDD8AB /* PopupNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNode.swift; sourceTree = "<group>"; };
 		8523E01B22E4C9EE00DDD8AB /* NSAttributedString+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Size.swift"; sourceTree = "<group>"; };
 		8523E01D22E4DE2700DDD8AB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		853C1CF622EF70970072EA61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		855641BD22E7393B00DA4A53 /* ScreenShareHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShareHelper.swift; sourceTree = "<group>"; };
 		855641BF22E7555400DA4A53 /* UIScreen+sizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+sizeType.swift"; sourceTree = "<group>"; };
 		855641C222E7A0F400DA4A53 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		8517A35522DDD53500741510 /* catchThis */ = {
 			isa = PBXGroup;
 			children = (
+				853C1CF622EF70970072EA61 /* GoogleService-Info.plist */,
 				855641C122E7A0E900DA4A53 /* Sounds */,
 				855641BC22E7391900DA4A53 /* Helpers */,
 				8517A39922DE674E00741510 /* Extensions */,
@@ -276,6 +279,7 @@
 				8517A34F22DDD53500741510 /* Sources */,
 				8517A35022DDD53500741510 /* Frameworks */,
 				8517A35122DDD53500741510 /* Resources */,
+				560094F8ADD982047ED2F28F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -385,6 +389,7 @@
 				8517A35922DDD53500741510 /* GameScene.sks in Resources */,
 				855641C522E7A1E200DA4A53 /* fail.mp3 in Resources */,
 				8517A36422DDD53600741510 /* Assets.xcassets in Resources */,
+				853C1CF722EF70970072EA61 /* GoogleService-Info.plist in Resources */,
 				8517A36722DDD53600741510 /* LaunchScreen.storyboard in Resources */,
 				8523E01822E4BA8B00DDD8AB /* Assets.xcassets in Resources */,
 			);
@@ -449,6 +454,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		560094F8ADD982047ED2F28F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-catchThis/Pods-catchThis-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-catchThis/Pods-catchThis-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-catchThis/Pods-catchThis-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		616E9D1C96D6443CEF7968C7 /* [CP] Check Pods Manifest.lock */ = {
